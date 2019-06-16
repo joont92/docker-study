@@ -1,7 +1,6 @@
-version: "3"
+version: "2"
 services:
-    database:
-        container_name: test_database
+    test_database:
         image: mysql:5.7
         environment:
           MYSQL_DATABASE: test_db
@@ -9,11 +8,15 @@ services:
           MYSQL_ROOT_HOST: '%'
         ports:
           - 3306:3306
+        volumes:
+          - test_volume:/var/lib/mysql
 
-    application:
-        container_name: test_application
+    test_application:
         build: .
         ports:
           - 8080:8080
         depends_on:
-          - database
+          - test_database
+
+volumes:
+    test_volume:

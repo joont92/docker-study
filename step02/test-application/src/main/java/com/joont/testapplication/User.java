@@ -1,6 +1,7 @@
 package com.joont.testapplication;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,18 +10,21 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user")
 public class User {
+    @Getter
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+    @Getter
     @Column(name = "name")
     private String name;
 
+    @Getter
     @Column(name = "age")
-    private String age;
+    private Integer age;
 
-    public User(String name, String age) {
+    public User(String name, Integer age) {
         this.name = name;
         this.age = age;
     }
