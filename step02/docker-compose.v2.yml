@@ -1,4 +1,4 @@
-version: "3"
+version: "2"
 services:
     test_web:
         image: nginx
@@ -17,8 +17,8 @@ services:
           MYSQL_ROOT_HOST: '%'
         ports:
           - 3306:3306
-        volumes:
-          - test_volume:/var/lib/mysql
+        volumes_from:
+          - test_volume
 
     test_application:
         build: .
@@ -27,5 +27,7 @@ services:
         depends_on:
           - test_database
 
-volumes:
     test_volume:
+        image: busybox
+        volumes:
+          - /var/lib/mysql
