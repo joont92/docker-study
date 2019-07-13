@@ -1,0 +1,6 @@
+spec:
+  template:
+    spec:
+      containers:
+        - name: echo-version
+          image: gihyodocker/echo-version:0.2.0

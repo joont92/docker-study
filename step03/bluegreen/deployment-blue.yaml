@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name : test-deployment-blue
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: test-pod
+      color: blue
+  template:
+    metadata:
+      labels:
+        app: test-pod
+        color: blue
+    spec:
+      containers:
+        - name: test-pod
+          image: joont92/echo-version:0.1.0
+          ports:
+            - containerPort: 8080
